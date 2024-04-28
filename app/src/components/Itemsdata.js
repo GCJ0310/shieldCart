@@ -14,7 +14,9 @@ const Itemsdata = [
     price: 2000,
     img: almond,
     category: "Nuts",
-    ingredients: ["Nuts","Tree Nut Allergies","Digestive Disorders"]
+    ingredients: ["Nuts","Tree Nut Allergies","Digestive Disorders"],
+    qty:0,
+    isAllergic:false,
   },
   {
     id: 2,
@@ -22,7 +24,9 @@ const Itemsdata = [
     price: 4000,
     img: apple,
     category: "Fruit",
-    ingredients:["Oral Syndrome", "Apple Allergens"]
+    ingredients:["Oral Syndrome", "Apple Allergens"],
+    qty:0,
+    isAllergic:false,
   },
   {
     id: 3,
@@ -31,6 +35,8 @@ const Itemsdata = [
     img: apricot,
     category: "Fruit",
     ingredients: ["Pollen Allergy" , "Tree Nuts" , "Fruits"],
+    qty:0,
+    isAllergic:false,
   },
   {
     id: 4,
@@ -39,6 +45,8 @@ const Itemsdata = [
     img: artichoke,
     category: "Nuts",
     ingredients: ["Gallstones","Artichoke Allergy",],
+    qty:0,
+    isAllergic:false,
   },
   {
     id: 5,
@@ -47,6 +55,8 @@ const Itemsdata = [
     img: buttermilk,
     category: "Dairy",
     ingredients: ["Lactose Intolerance","Dairy Allergy","Heart Disease","Cholesterol Concerns"],
+    qty:0,
+    isAllergic:false,
   },
   {
     id: 6,
@@ -55,6 +65,8 @@ const Itemsdata = [
     img: eggs,
     category: "Dairy",
     ingredients: ["Cholesterol Concerns","Dairy Allergy"],
+    qty:0,
+    isAllergic:false,
   },
   {
     id: 7,
@@ -63,6 +75,8 @@ const Itemsdata = [
     img: yogurt,
     category: "Dairy",
     ingredients: ["Lactose Intolerance","Dairy Allergy","Heart Disease","Cholesterol Concerns" ,"High Sugar Content"],
+    qty:0,
+    isAllergic:false,
   },
   {
     id: 8,
@@ -71,6 +85,8 @@ const Itemsdata = [
     img: fruits,
     category: "Fruit",
     ingredients: ["Digestive Disorders","High Sugar Content"],
+    qty:0,
+    isAllergic:false,
   },
   {
     id: 9,
@@ -78,7 +94,9 @@ const Itemsdata = [
     price: 3500,
     img: pomefruit,
     category: "Fruit",
-    ingredients: [],
+    ingredients: ["Digestive Disorders","High Sugar Content","Lactose Intolerance","Dairy Allergy","Heart Disease",],
+    qty:0,
+    isAllergic:false,
   },
 ]
 

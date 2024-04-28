@@ -12,34 +12,57 @@ function ViewItem() {
   const navigate = useNavigate()
   const location = useLocation()
   const appState = useContext(StateContext)
-  //console.log(appState.Addtocart)
+  const appDispatch = useContext(DispatchContext)
   let id = location.search.substring(4)
   id -= 1
-  let [cart, updatecart] = useState([appState.Addtocart])
-  useEffect(() => {}, [cart, appState.Addtocart])
+  const allergiesarray = appState.allergies
+    .split(",")
+    .map((item) => item.trim())
+  if (allergiesarray.length === 0) allergiesarray.push(appState.allergies)
+  // console.log(allergiesarray)
+
 
   function addcart() {
-    const exist = appState.Addtocart.find((x) => {
-      console.log(x.id - 1 + " " + id)
-      return x.id - 1 === id
-    })
-    console.log(exist)
-    if (exist) {
-      appState.Addtocart = appState.Addtocart.map((x) =>
-        x.id - 1 === id ? { ...exist, qty: (exist.qty += 1) } : x
+    const ingredientsarray = Itemsdata[id].ingredients.map((ingredient) =>
+      ingredient.toLowerCase()
+    )
+    const newallergiesarray = allergiesarray.map((allergy) =>
+      allergy.toLowerCase()
+    )
+    // checking for allergies match
+    const hasAllergies = ingredientsarray.some((ingredient) =>
+      allergiesarray.some(
+        (allergy) =>
+          ingredient.includes(allergy) || allergy.includes(ingredient)
       )
-      updatecart(appState.Addtocart)
-      console.log(appState.Addtocart)
+    )
+
+    if (hasAllergies) {
+      // Dispatch an action to mark the item as allergic
+      Itemsdata[id].isAllergic=true;
+      
+      console.log("Allergies match")
+    }
+    // Finding if the item exists in the cart
+    const itemexistincart = appState.Addtocart.find((x) => x.id - 1 === id)
+
+    if (itemexistincart) {
+      // If the item exists, create a new array with the updated quantity
+      const updatedCart = appState.Addtocart.map((x) =>
+        x.id - 1 === id ? { ...x, qty: x.qty + 1 } : x
+      )
+
+      // Dispatch an action to update the cart
+      appDispatch({ type: "updateCart", value: updatedCart })
     } else {
-      appState.Addtocart.push({ ...Itemsdata[id], qty: 1 })
-      updatecart(appState.Addtocart)
+      // If the item doesn't exist, add it to the cart with quantity 1
+      appDispatch({
+        type: "addIteminCart",
+        value: { ...Itemsdata[id], qty: 1 },
+      })
     }
   }
-  console.log(appState.allergies)
-  const allergiesarray = appState.allergies.split(',').map(item => item.trim());
-  if(allergiesarray.length===0)
-    allergiesarray.push(appState.allergies)
-  console.log(allergiesarray)
+
   return (
     <>
       <div className="viewitemshowbox">
@@ -49,7 +72,7 @@ function ViewItem() {
               <button
                 className="backbtn"
                 onClick={() => {
-                  navigate("/store")
+                  navigate("/Store")
                 }}
               >
                 <img src={back} alt="" />
@@ -89,9 +112,21 @@ function ViewItem() {
             <p className="tagp">by ShieldCart</p>
             <br></br>
             <img className="" src={star} alt="" />
-            <p className="tagp"><b>Ingredients :- </b> {Itemsdata[id].ingredients.map((ingredient,index)=>{return <li key={index}>{ingredient}</li>})} </p>
-            <br/>
-            <p className="tagp"><b>Allergic to :- <br/></b>{allergiesarray.map((allergy,index)=>{return <li key={index}>{allergy}</li>})}</p>
+            <p className="tagp">
+              <b>Ingredients :- </b>{" "}
+              {Itemsdata[id].ingredients.map((ingredient, index) => {
+                return <li key={index}>{ingredient}</li>
+              })}{" "}
+            </p>
+            <br />
+            <p className="tagp">
+              <b>
+                Allergic to :- <br />
+              </b>
+              {allergiesarray.map((allergy, index) => {
+                return <li key={index}>{allergy}</li>
+              })}
+            </p>
             <br></br>
             <p>Rs. {Itemsdata[id].price}/-</p>
             <p className="tagp">

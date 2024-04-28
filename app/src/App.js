@@ -12,11 +12,20 @@ import DispatchContext from "./DispatchContext"
 import ViewItem from "./components/ViewItem"
 import Login from "./components/Login"
 import Register from "./components/Register"
+import almond from "./images/almond.png"
+import apple from "./images/apple.png"
+import artichoke from "./images/artichoke.png"
+import apricot from "./images/apricot.png"
+import eggs from "./images/eggs.png"
+import yogurt from "./images/yogurt.png"
+import fruits from "./images/fruits.png"
+import pomefruit from "./images/pomefruit.png"
+import buttermilk from "./images/buttermilk.png"
 
 function App() {
   const init = {
     username: "",
-    allergies:"",
+    allergies: "",
     isLoggedIn: false,
     Cartitemsnum: 0,
     Addtocart: [],
@@ -32,12 +41,29 @@ function App() {
       case "setUsername":
         draft.username = action.value
         return
-        case "setalleries":
+      case "setalleries":
         draft.allergies = action.value
         return
       case "cartadd":
         draft.Cartitemsnum += 1
         return
+      case "addIteminCart":
+        draft.Addtocart = [...draft.Addtocart, action.value]
+        return
+      case "updateCart":
+        draft.Addtocart = action.value
+        return
+      case "markAsAllergic": {
+        // Find the index of the item with the given id
+        const index = draft.Addtocart.findIndex((item) =>{  console.log(item.id , action.id);return (  item.id === action.id) })
+        // console.log(index)
+        if (index !== -1) {
+          // If item found, set isAllergic to true
+          console.log(draft.Addtocart[index])
+          draft.Addtocart[index].isAllergic = true
+        }
+        return
+      }
     }
   }
 
