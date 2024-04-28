@@ -195,6 +195,9 @@
   width: 1.5rem;
 }
 .leftbar {
+  height: 83vh;
+  overflow: auto;
+  overflow-x: hidden;
   position: absolute;
   top: 8.5%;
   margin-left: 1%;
@@ -269,6 +272,9 @@
   top: 8.5%;
   left: 18%;
   width: 52%;
+  height: 83vh;
+  overflow: auto;
+  overflow-x: hidden;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-left: 6%;
   margin-top: 3%;
@@ -334,6 +340,9 @@
 .rightbar {
   
   position: absolute;
+  height:83vh;
+  overflow: auto;
+  overflow-x: hidden;
   top: 8.5%;
   left: 77%;
   width: 22%;
@@ -568,13 +577,13 @@
   margin-top: .7rem;
   margin-bottom: 1rem;
 }
-.btn{
+.btn , .btn-locate{
   margin:30px;
   display: flex;
   gap:10px;
   align-items: center;
 }
-.btn button {
+.btn-locate button,.btn button {
   width: auto;
   display: inline-block;
   padding: 6px 12px;
@@ -588,7 +597,7 @@
   font-weight: 500;
   letter-spacing: 1.2px;
 }
-.btn button:hover {
+.btn-locate button:hover,.btn button:hover {
   text-decoration: none;
   cursor: pointer;
   background-color: #29a84f;
@@ -597,7 +606,9 @@
   font-size: 20px;
   color: #8f8f8f;
 }
-
+.btn-locate{
+  margin:0
+}
 
 
 

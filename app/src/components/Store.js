@@ -18,9 +18,11 @@ function Store() {
     setmax(parseInt(lim.substring(5)))
   }, [lim])
   useEffect(() => {}, [category])
-  function applychanges()
+  function Clearchanges(e)
   {
-    setapply(true)
+    e.target.checked=false
+    setcategory('')
+    setlim("0")
   }
   let acprice
   return (
@@ -68,7 +70,7 @@ function Store() {
           </div>
           <br></br>
           <div className="panel3">
-            <h4>Colour</h4>
+            <h4>Favourites</h4>
             <div className="boxes">
               <button className="col btn1"></button>
               <button className="col btn2"></button>
@@ -78,7 +80,7 @@ function Store() {
             </div>
           </div>
           <br></br>
-          <div className="panel4">
+          {/* <div className="panel4">
             <h4>Design templates</h4>
             <br></br>
             <input className="designfil1" type="radio" name="design" /> 2
@@ -87,9 +89,9 @@ function Store() {
             <br></br>
             <input className="designfil3" type="radio" name="design" /> 4+
           </div>
-          <br></br>
+          <br></br> */}
           <div className="panel5">
-            <h4>Type</h4>
+            <h4>Category</h4>
             <br></br>
             <input
               onChange={(e) => {
@@ -101,9 +103,9 @@ function Store() {
               className="typefil1"
               type="radio"
               name="category"
-              value="Loafers"
+              value="Nuts"
             />{" "}
-            Loafers<br></br>
+            Nuts<br></br>
             <input
               onChange={(e) => {
                 if (e.target.checked === true) 
@@ -114,13 +116,26 @@ function Store() {
               className="typefil1"
               type="radio"
               name="category"
-              value="Sneakers"
+              value="Fruit"
             />{" "}
-            Sneakers<br></br>
+            Fruits<br></br>
+            <input
+              onChange={(e) => {
+                if (e.target.checked === true) 
+                {
+                  setcategory(e.target.value)
+                }
+              }}
+              className="typefil1"
+              type="radio"
+              name="category"
+              value="Dairy"
+            />{" "}
+            Dairy<br></br>
           </div>
           <br></br>
           <div className="panel6">
-            <button onClick={applychanges} className="applyfilter">apply</button>
+            <button onClick={Clearchanges} className="applyfilter">Clear</button>
           </div>
         </div>
 
@@ -128,7 +143,7 @@ function Store() {
 
         <div className="centerbar">
           <div className="cenpanel1">
-            <h4>SHOES</h4>
+            <h4>STORE</h4>
             <div className="imagesic">
               <button className="sbtn">
                 <img className="searchicon" src={search} alt="" />

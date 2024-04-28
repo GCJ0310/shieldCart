@@ -77,7 +77,7 @@ function ViewItem() {
               >
                 <img src={back} alt="" />
               </button>
-              <p>Your Design Space</p>
+              <p>Back</p>
             </div>
 
             {/* <h1>{Itemsdata[id].title}</h1> */}
@@ -134,6 +134,7 @@ function ViewItem() {
             </p>
             <br></br>
             <br></br>
+            <div className="btn-locate"><a href="https://app.mappedin.com/map/6624e55b3d4f85efee0e485a?floor=m_a0411ad34edee4d4" target="_blank"><button>Locate</button></a></div>
             {/* <div className="varietyviewitem">
               <div className="varietynameviewitem">
                 <p>Front</p>
